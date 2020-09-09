@@ -98,18 +98,19 @@ function questionsFunc () {
 
 var lastQuesIndex = questions.length; 
 
-// function that will display the correc tanswer when user chooses an option 
+// function that will display the correct answer when user chooses an option 
+
+////////----------------------------------------------NEED TO COME BACK TO THIS -BROKEN/INCORRECT CODE--------------------------------------------------------
     
 function displayAnswer () { 
 
-    var answerCorrect = questions[quesIndex].question; 
+    var answerCorrect = questions[quesIndex].correctAnswer; 
     
-    $('#answer-btn1').click(function() {
+    $('.btn').click(function() {
+        var value = $(this).val(); 
+        var button1 = 'submit1'; 
 
-        var correct = questions[0].correctAnswer;
-        var option = "script";
-
-    if (correct === option && quesIndex !== lastQuesIndex) {
+    if (button1 === value && quesIndex !== lastQuesIndex) {
             // correctAnswer.textContent = "You are correct!"; 
             alert("correct"); 
             quesIndex++; 
@@ -117,10 +118,6 @@ function displayAnswer () {
     } else 
             (alert("incorrect")); 
     
-        
-        // } else (value !== submit && quesIndex !== lastQuesIndex); 
-        //     // correctAnswer.textContent = "You are incorrect!"; 
-        //   
-        //     questionsFunc();
-    
 })};
+
+////////----------------------------------------------NEED TO COME BACK TO THIS -BROKEN/INCORRECT CODE--------------------------------------------------------
