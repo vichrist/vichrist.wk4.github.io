@@ -48,21 +48,10 @@ var answerbtn2 = document.getElementById('answer-btn2');
 var answerbtn3 = document.getElementById('answer-btn3');
 var answerbtn4 = document.getElementById('answer-btn4');
 
-// question function that will render questions and answers to page 
-function questionsFunc () {
 
-    questionContainer.textContent= ''; 
-
-    var quizQuestions = questions[quesIndex]; 
-
-    questionContainer.textContent = quizQuestions.question; 
-    answerbtn1.textContent = quizQuestions.option1;
-    answerbtn2.textContent = quizQuestions.option2; 
-    answerbtn3.textContent = quizQuestions.option3;
-    answerbtn4.textContent = quizQuestions.option4; 
-
-    console.log('quizquestions', quizQuestions);  // testing purposes 
-}; 
+// event listener 
+var startButton = document.getElementById('start');
+startButton.addEventListener('click', countDownStartQuiz);
 
 // variable initializer to hold value of 60    
 var startSeconds = 60; 
@@ -87,16 +76,34 @@ function countDownStartQuiz () {
         }
     }, 1000);
 };
- 
+
+
+// question function that will render questions and answers to page 
+function questionsFunc () {
+
+    questionContainer.textContent= ''; 
+
+    var quizQuestions = questions[quesIndex]; 
+
+    questionContainer.textContent = quizQuestions.question; 
+    answerbtn1.textContent = quizQuestions.option1;
+    answerbtn2.textContent = quizQuestions.option2; 
+    answerbtn3.textContent = quizQuestions.option3;
+    answerbtn4.textContent = quizQuestions.option4; 
+
+    console.log('quizquestions', quizQuestions);  // testing purposes 
+}; 
 
 // global variable that will be used to indicate the number of questions in array 
 
 var lastQuesIndex = questions.length; 
 
 // function that will display the correc tanswer when user chooses an option 
-
+    
 function displayAnswer () { 
 
+    var answerCorrect = questions[quesIndex].question; 
+    
     $('#answer-btn1').click(function() {
 
         var correct = questions[0].correctAnswer;
@@ -117,132 +124,3 @@ function displayAnswer () {
         //     questionsFunc();
     
 })};
-
-
-// function displayAnswer1 () { 
-//     $('#answer-btn1').click(function(){
-//         var value = $(this).val();
-//         console.log('value', value);
-//         // var submit = 'submit';
-//         // var submit = $("answer-btn1").val(); 
-//         var submit = value; 
-//         console.log('submit', submit);
-
-//     if(value === submit && quesIndex !== lastQuesIndex) {
-//             // correctAnswer.textContent = "You are correct!"; 
-//   
-//             quesIndex++; 
-//             questionsFunc(); }
-//         // } else (value !== submit && quesIndex !== lastQuesIndex); 
-//         //     // correctAnswer.textContent = "You are incorrect!"; 
-//         //   
-//         //     questionsFunc();
-//     })
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function displayAnswer () { 
-//     $('.btn').click(function(){
-//         var value = $(this).val();
-//     if(value === "submit" && quesIndex !== lastQuesIndex) {
-//             correctAnswer.textContent = "You are correct!"; 
-//             quesIndex++; 
-//             questionsFunc(); 
-//         } else if (value !== "submit" && quesIndex !== lastQuesIndex); 
-//             correctAnswer.textContent = "You are incorrect!"; 
-//             questionsFunc();
-//     })
-// };
-
-//     var choice = questions[quesIndex].correctAnswer; 
-//     console.log('choice', choice);
-//     if (correct === choice && quesIndex !== lastQuesIndex) {
-//         startSeconds++;
-//         alert('You chose correctly'); 
-//         quesIndex++;
-//         questionsFunc(); 
-//     } else if (correct !== choice && quesIndex !== lastQuesIndex) {
-//         alert("You chose incorrectly"); 
-//         questionsFunc(); 
-//     } else {
-//         console.log("still working on this") // displayScore(); need to create this function 
-//     }
-
-// } 
-
-
-
-// function displayAnswer () {
-//     $('.btn').click(function(){
-//         var val = $(this).val(); 
-//         if(val === 'submit') {
-//           correctAnswer.textContent = "Correct"; 
-//           console.log("correct choice");
-//         //   var addSeconds = 10; 
-//         //   var added = startSeconds + addSeconds;  
-//         //   count.innerText= added; 
-//           startSeconds += 10;  
-//         } else {
-//             console.log("Incorrect");
-//             correctAnswer.textContent = "Incorrect";
-//             startSeconds -= 10;  
-//         }
-//     })
-// };
-
-var startButton = document.getElementById('start');
-startButton.addEventListener('click', countDownStartQuiz);
