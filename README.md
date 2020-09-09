@@ -1,8 +1,8 @@
 # WK-4homework
 
-The task is to create multiple choice questions regarding coding.
+The task is to create a multiple choice question quiz
 
-Once the start button is clicked on, the user is presented with the first question and the timer begins countdown from 60 seconds.
+Once the start button is clicked, the user is presented with the first question and the timer begins countdown from 60 seconds.
 
 If the user selects the incorrect question the time will reduce by 3 seconds and the correct question will be highlighted in red.
 

@@ -1,0 +1,31 @@
+
+body {
+    background-color: lightgrey;
+}
+
+#question-container {
+    width: 40%; 
+    height: 100px;
+ 
+}
+
+#btn-container {
+    width: 40%; 
+    height: 100px;
+   
+}
+
+#answer-btn1, #answer-btn2, #answer-btn3, #answer-btn4 {
+    width: 100px;
+    align-content: center;
+    background-color: darkgrey;
+   
+}
+#start, #next {
+    width: 100px;
+    background-color: darkgrey;
+}
+
+#countdown, #score {
+    font-size: 20px ;
+}

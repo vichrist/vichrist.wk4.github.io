@@ -3,33 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Updated Web Title Name-->
-    <title>Quiz App</title>
-    <!--External linked the CSS and JavaScript sheets-->
-    <link href="styles.css" rel="stylesheet" type="text/css">
-    <script defer src="script.js"></script>
+    <title>Quiz</title>
+   
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <!--Timer-->
-    <p id="countdown">1:00</p>
 
-    <!--Main Section Card Container-->
-    <div class= "container">
-    <!--Section (question content and content for start and next) -->
-        <div id="question-container" class="hide">
-            <div id="question">Question</div>
-            <div id="answer-buttons" class="gridbtn">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
-            </div>
-        </div>
-    <!--Section-->
-        <div class="controls">
-            <button id="start-btn" class="start-btn btn">Start</button>
-            <button id="next-btn" class="next-btn btn hide">Next</button>
+    <div id ="container">
+
+    <h1> Coding Quiz</h1>
+
+    <h2>Answer the following questions <br><br>Your time will reduce by 10 seconds for each incorrect answer</h2>
+
+    <h3> Press start to begin </h3>
+
+    <h4 id='score'>Score:</h4>
+
+    <h5 id="countdown">Timer:<h5>
+
+    <div id="question-container"></div>
+
+    <div id="btn-container">
+        <button id="answer-btn1" class="btn"  value ="submit1" onclick="displayAnswer()">Answer</button>
+        <button id="answer-btn2" class="btn"  value ="submit2" onclick="displayAnswer2()">Answer</button>
+        <button id='answer-btn3' class="btn"  value ="submit3" onclick="displayAnswer2()">Answer</button>
+        <button id='answer-btn4' class="btn"  value ="submit4" onclick="displayAnswer2()">Answer</button>  
     </div>
-</div>
+
+    <div id="btn-container-start-next">
+        <button id="start">Start</button>
+        <button id="next">Next</button>
+    </div>
+
+    <div id ='GAME OVER'></div>
+
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

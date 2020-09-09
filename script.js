@@ -1,170 +1,248 @@
-//create function and variables for timer 
 
-const startingMinutes = 1; 
-let time = startingMinutes * 60; 
+// questions/options/answer that will be part of quiz 
 
-const countdownEl = document.getElementById('countdown'); 
-
-setInterval(updateCountdown, 1000); 
-
-function updateCountdown() {
-    const minutes = Math.floor(time / 60); 
-    let seconds = time / 60;   
-
-    countdownEl.innerHTML; 
-    time--; 
- }
-
-//Created an alert for the user just a basic overview of the game, time and penalties 
-
-alert("The correct answer will be displayed in red. You have 60 seconds to answer all questions. For every incorrect question your time will reduce by 3 seconds")
-
-//Created and assigned variables for HTML ID elements 
-
-let startButton = document.getElementById('start-btn')
-let nextButton = document.getElementById('next-btn')
-
-let questionContainerElement  = document.getElementById ('question-container')
-let questionElement = document.getElementById('question')
-let answerButtonsElement = document.getElementById('answer-buttons')
-
-let shuffledQuestions, currentQuestionIndex 
-
-//Add events for start/next buttons, once the buttond are clicked the code will be executed 
-startButton.addEventListener('click', startGame)
-nextButton.addEventListener('click', () => {
-    currentQuestionIndex++ 
-    setNextQuestion() 
-})
-
-//Created function to start the game 
-function startGame() {
-    console.log('Started')//console logging that game has started
-    startButton.classList.add('hide') //hides the start button once clicked on
-    shuffledQuestions = questions.sort(() => Math.random() - .5) //allows for shuffling the questions should the game be restarted
-    currentQuestionIndex = 0
-    questionContainerElement.classList.remove('hide') //unhides the question buttons
-    setNextQuestion()
-}
-
-//Created function to show questions and reset answers chosen from last question answered 
-function setNextQuestion(){ 
-    resetState()
- showQuestion(shuffledQuestions[currentQuestionIndex])
-}
-
-//Created a function to show questions/populate different answers
-function showQuestion(question) {
-questionElement.innerText = question.question
-question.answers.forEach(answer => {
-    const button = document.createElement('button')
-    button.innerText = answer.text
-    button.classList.add('btn')
-    if (answer.correct) {
-        button.dataset.correct = answer.correct
-    }
-    button.addEventListener('click', selectAnswer)
-    answerButtonsElement.appendChild(button)
-    })
-}
-//Created function that clears the answers once next question is clicked 
-function resetState(){
-    nextButton.classList.add('hide')
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild
-        (answerButtonsElement.firstChild)
-    }
-}   
-//Created a function that executes once user selects their answer 
-function selectAnswer (e) {
-    const selectedButton = e.target 
-    const correct = selectedButton.dataset.correct//this will check to see if correct
-    setStatusClass(document.body, correct)
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
-    if (shuffledQuestions.length > currentQuestionIndex + 1) {
-        nextButton.classList.remove('hide')
-    } else {
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
-    }
-}
-
-function setStatusClass(element, correct) {
-    clearStatusCLass(element)
-    if (correct) {
-        element.classList.add('correct')
-    } else {
-        element.classList.add('wrong')
-    }
-}
-
-function clearStatusCLass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-}
-
-//Created questions with multiple choice answers
-
-const questions = [ 
+var questions = [ 
     {
         question: 'In which HTML element do we place JavaScript code?', 
-        answers: [
-            { text: '<script>', correct: true}, 
-            { text: '<javascript>', correct: false},
-            { text: '<title>', correct: false},
-            { text: '<style>', correct: false}
-        ]
+        option1: 'script', 
+        option2: 'javascript', 
+        option3: 'title', 
+        option4: 'style', 
+        correctAnswer: "script", 
     },
-
 
     {
         question: 'If you want to reference a class using CSS, which of the following is correct ?', 
-        answers: [
-            { text: '.', correct: true}, 
-            { text: '#', correct: false},
-            { text: '_', correct: false},
-            { text: '*', correct: false}
-        ]
+        option1: '.', 
+        option2: '_', 
+        option3: '#', 
+        option4: '*',  
+        correctAnswer: "."
     },
 
     {
         question: 'Choose from the three types of styling what the following code style represents: <link href="style.css rel="stylesheet" type= "text/css">', 
-        answers: [
-            { text: 'internal', correct: false}, 
-            { text: 'external', correct: true}, 
-            { text: 'in-line', correct: false},
-            { text: 'line', correct: false}
-        ]
+        option1: 'internal', 
+        option2: 'external', 
+        option3: 'in-line', 
+        option4: 'line', 
+        correctAnswer: "internal"
     },
-
-    {
-        question: 'What is the correct syntax for referring to an external script called "xxx.js"?', 
-        answers: [ 
-            { text: '<script name ="xxx.js>', correct: false}, 
-            { text: '<script href ="xxx.js>', correct: false}, 
-            { text: '<script src ="xxx.js>', correct: true}
-        ]
-    },
-
-    {
-        question: 'How do you write "Hello World" in an alert box?', 
-        answers: [
-            { text: 'alertBox("Hello World")', correct: false}, 
-            { text: 'msgBox("Hello World")', correct: false}, 
-            { text: 'msg("Hello World")', correct: false},
-            { text: 'alert("Hello World")', correct: true}
-        ]
-    },
-
     {
         question: 'How do you create a function in JavaScript?', 
-        answers: [
-            { text: 'function = myFunction()', correct: true}, 
-            { text: 'function:myFunction()', correct: false}, 
-            { text: 'function myFunction()', correct: false},
-            { text: 'function-myFunction()', correct: false}
-        ]
+        option1: 'function myFunction()', 
+        option2: 'function:myFunction()',
+        option3: 'function = myFunction()',
+        option4: 'function-myFunction()', 
+        correctAnswer: 'function myFunction()'
+
     }
-]
+] 
+console.log('questions', questions); // testing purposes  
+
+// global variables used for questionsFunction 
+var quesIndex = 0; 
+var questionContainer = document.getElementById('question-container')
+var answerbtn1 = document.getElementById('answer-btn1');
+var answerbtn2 = document.getElementById('answer-btn2');
+var answerbtn3 = document.getElementById('answer-btn3');
+var answerbtn4 = document.getElementById('answer-btn4');
+
+// question function that will render questions and answers to page 
+function questionsFunc () {
+
+    questionContainer.textContent= ''; 
+
+    var quizQuestions = questions[quesIndex]; 
+
+    questionContainer.textContent = quizQuestions.question; 
+    answerbtn1.textContent = quizQuestions.option1;
+    answerbtn2.textContent = quizQuestions.option2; 
+    answerbtn3.textContent = quizQuestions.option3;
+    answerbtn4.textContent = quizQuestions.option4; 
+
+    console.log('quizquestions', quizQuestions);  // testing purposes 
+}; 
+
+// variable initializer to hold value of 60    
+var startSeconds = 60; 
+
+// variable that is assigned to the countdown p element which will display on HTML when triggered
+var count = document.getElementById('countdown');
+var funcInterval;
+
+// function that will be called once the start button is clicked 
+
+function countDownStartQuiz () {
+
+    questionsFunc(); 
+
+    funcInterval = setInterval(function() {
+        startSeconds--; 
+        count.textContent = startSeconds; // show the decrement in seconds on HTML 
+
+        if (startSeconds <= 0) {
+            clearInterval(funcInterval); 
+            return outOfTime(); 
+        }
+    }, 1000);
+};
+ 
+
+// global variable that will be used to indicate the number of questions in array 
+
+var lastQuesIndex = questions.length; 
+
+// function that will display the correc tanswer when user chooses an option 
+
+function displayAnswer () { 
+
+    $('#answer-btn1').click(function() {
+
+        var correct = questions[0].correctAnswer;
+        var option = "script";
+
+    if (correct === option && quesIndex !== lastQuesIndex) {
+            // correctAnswer.textContent = "You are correct!"; 
+            alert("correct"); 
+            quesIndex++; 
+            questionsFunc(); 
+    } else 
+            (alert("incorrect")); 
+    
+        
+        // } else (value !== submit && quesIndex !== lastQuesIndex); 
+        //     // correctAnswer.textContent = "You are incorrect!"; 
+        //   
+        //     questionsFunc();
+    
+})};
+
+
+// function displayAnswer1 () { 
+//     $('#answer-btn1').click(function(){
+//         var value = $(this).val();
+//         console.log('value', value);
+//         // var submit = 'submit';
+//         // var submit = $("answer-btn1").val(); 
+//         var submit = value; 
+//         console.log('submit', submit);
+
+//     if(value === submit && quesIndex !== lastQuesIndex) {
+//             // correctAnswer.textContent = "You are correct!"; 
+//   
+//             quesIndex++; 
+//             questionsFunc(); }
+//         // } else (value !== submit && quesIndex !== lastQuesIndex); 
+//         //     // correctAnswer.textContent = "You are incorrect!"; 
+//         //   
+//         //     questionsFunc();
+//     })
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function displayAnswer () { 
+//     $('.btn').click(function(){
+//         var value = $(this).val();
+//     if(value === "submit" && quesIndex !== lastQuesIndex) {
+//             correctAnswer.textContent = "You are correct!"; 
+//             quesIndex++; 
+//             questionsFunc(); 
+//         } else if (value !== "submit" && quesIndex !== lastQuesIndex); 
+//             correctAnswer.textContent = "You are incorrect!"; 
+//             questionsFunc();
+//     })
+// };
+
+//     var choice = questions[quesIndex].correctAnswer; 
+//     console.log('choice', choice);
+//     if (correct === choice && quesIndex !== lastQuesIndex) {
+//         startSeconds++;
+//         alert('You chose correctly'); 
+//         quesIndex++;
+//         questionsFunc(); 
+//     } else if (correct !== choice && quesIndex !== lastQuesIndex) {
+//         alert("You chose incorrectly"); 
+//         questionsFunc(); 
+//     } else {
+//         console.log("still working on this") // displayScore(); need to create this function 
+//     }
+
+// } 
+
+
+
+// function displayAnswer () {
+//     $('.btn').click(function(){
+//         var val = $(this).val(); 
+//         if(val === 'submit') {
+//           correctAnswer.textContent = "Correct"; 
+//           console.log("correct choice");
+//         //   var addSeconds = 10; 
+//         //   var added = startSeconds + addSeconds;  
+//         //   count.innerText= added; 
+//           startSeconds += 10;  
+//         } else {
+//             console.log("Incorrect");
+//             correctAnswer.textContent = "Incorrect";
+//             startSeconds -= 10;  
+//         }
+//     })
+// };
+
+var startButton = document.getElementById('start');
+startButton.addEventListener('click', countDownStartQuiz);
